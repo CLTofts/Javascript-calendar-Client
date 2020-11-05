@@ -60,7 +60,7 @@ class App extends Component {
   //Grabs existing tasks from database and adds them to the local visual list of events while avoiding duplicates fropm showing.
   grabTasks = () => {
     
-    fetch("https://calender-client.herokuapp.com/users")
+    fetch("https://calender-server.herokuapp.com/users")
       .then((responce) => responce.json())
       .then((result) => {
         var newState = this.state;
@@ -159,7 +159,7 @@ class App extends Component {
     };
     console.log(data);
     if(data.startTime === "NULL"){
-      fetch("https://calender-client.herokuapp.com/users/addTaskWithoutTime", {
+      fetch("https://calender-server.herokuapp.com/users/addTaskWithoutTime", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
@@ -182,7 +182,7 @@ class App extends Component {
     }
 
     else{
-      fetch("https://calender-client.herokuapp.com/users/addTaskWithTime", {
+      fetch("https://calender-server.herokuapp.com/users/addTaskWithTime", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
@@ -277,7 +277,7 @@ class App extends Component {
     var data = {
       id: id
     }
-    fetch("https://calender-client.herokuapp.com/users/deleteTaskById", {
+    fetch("https://calender-server.herokuapp.com/users/deleteTaskById", {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
