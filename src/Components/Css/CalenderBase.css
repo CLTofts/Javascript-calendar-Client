@@ -16,7 +16,7 @@ body {
 }
 
 .CalenderHeader {
-  height: 10vh;
+  height: 15%;
   width: 100%;
   border-bottom: solid 2.5px black;
   border-top: solid 2.5px black;
@@ -48,9 +48,6 @@ body {
   flex: 1 0 0;
   display: flex;
   flex-direction: row;
-}
-
-.rowBottom {
 }
 
 .rowHeader {
@@ -104,11 +101,11 @@ body {
 
 .addingTop {
   background-color: white;
-  height: 10vh;
+  height: 15%;
   width: 100%;
 }
 
 .addingBot {
-  height: 80vh;
+  height: 85%;
   background-color: grey;
 }

@@ -290,7 +290,7 @@ export class CalenderBase extends Component {
         <div className="addingItem">
           <div className="addingTop">
             <Button
-              style={{ height: "inherit", width: "inherit", fontSize: "20px" }}
+              style={{ height: '100%', width: "inherit", fontSize: "20px" }}
               onClick={this.toggleForm}
             >
               Add Event
