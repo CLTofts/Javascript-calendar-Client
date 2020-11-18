@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 export class TaskInfo extends Component {
   render() {
     return (
-      <div>
+      <div style={{  background: "#59a5d8"}}>
         <h1><u>{this.props.info.taskName}</u></h1>
         <h2>Priority: {this.props.info.priority}</h2>
         <h2>Description</h2>

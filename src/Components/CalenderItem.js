@@ -9,9 +9,9 @@ getColour = (priority) => {
     case "High":
       return "red"
     case "Normal":
-      return "grey"
+      return "yellow"
     default:
-      return "blue"
+      return "lightgreen"
   }
 }
 

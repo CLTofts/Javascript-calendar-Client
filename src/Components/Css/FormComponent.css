@@ -3,5 +3,5 @@ form {
   display: flex;
   justify-content: space-between;
   flex-flow: column wrap;
-  background-color: lightblue;
+  background-color: #59a5d8;
 }

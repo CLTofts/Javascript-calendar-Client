@@ -53,7 +53,7 @@ export class FormComponent extends Component {
             </label>
           }
           <label>
-            Name:
+            Event Name:
             <input
               name="taskName"
               value={this.props.form.taskName}
@@ -63,7 +63,7 @@ export class FormComponent extends Component {
             ></input>
           </label>
           <label>
-            Add Time
+            Include Time     
             <input type="checkbox" onChange={this.toggleTimeVisible}></input>
           </label>
           {this.state.timeFormVisible && (
@@ -87,7 +87,7 @@ export class FormComponent extends Component {
             </label>
           )}
           <label style={{ fontSize: "20px" }}>
-            Day:
+            Date:
             <select
               name="day"
               value={this.props.form.day}
@@ -118,7 +118,7 @@ export class FormComponent extends Component {
           </label>
           <label>
             <input
-              style={{ width: "100px", textAlign: "center", fontSize: "20px" }}
+              style={{width: "100px", textAlign: "center", fontSize: "20px" }}
               type="Submit"
             ></input>
           </label>

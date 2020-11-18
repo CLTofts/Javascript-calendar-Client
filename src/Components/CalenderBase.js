@@ -196,27 +196,6 @@ export class CalenderBase extends Component {
     return rows;
   };
 
-  // taskUpdate = () => {
-  //   var newState = this.state;
-  //   newState.form.taskName = newState.info.taskName;
-  //   newState.form.day = newState.info.day;
-  //   newState.form.priority = newState.info.priority;
-  //   newState.form.description = newState.info.description;
-  //   console.log(
-  //     newState.form.taskName +
-  //       ", " +
-  //       newState.form.day +
-  //       ", " +
-  //       newState.form.priority +
-  //       ", " +
-  //       newState.form.description
-  //   );
-  //   newState.hidden.formHidden = true;
-  //   newState.hidden.taskInfoHidden = true;
-  //   newState.hidden.updateInfoHidden = false;
-  //   this.setState({ newState });
-  // };
-
   taskDelete = (id) => {
     this.props.taskDelete(id);
     this.toggleOff();
@@ -290,7 +269,7 @@ export class CalenderBase extends Component {
         <div className="addingItem">
           <div className="addingTop">
             <Button
-              style={{ height: '100%', width: "inherit", fontSize: "20px" }}
+              style={{ background: "#776885", height: '100%', width: "inherit", fontSize: "20px" }}
               onClick={this.toggleForm}
             >
               Add Event
@@ -310,24 +289,11 @@ export class CalenderBase extends Component {
                 />
               )}
             </div>
-            <div className="InfoTab">
+            <div className="infoTab">
               {!this.state.hidden.taskInfoHidden && (
                 <TaskInfo
                   info={this.state.info}
                   handleDelete={this.taskDelete}
-                />
-              )}
-            </div>
-            <div className="UpdateTab">
-              {!this.state.hidden.updateInfoHidden && (
-                <UpdateInfo
-                  monthName={this.props.month.monthName}
-                  months={this.props.months}
-                  days={this.removeEmptyDays(this.props.month.days)}
-                  id={this.state.info.id}
-                  info={this.state.form}
-                  onFormChange={this.updateChange}
-                  onUpdateSubmit={this.updateSubmit}
                 />
               )}
             </div>
