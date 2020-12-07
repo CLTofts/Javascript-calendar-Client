@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "../App.css";
 import Routes from "../Routes";
+import { useHistory } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 
 import { BrowserRouter as Router } from "react-router-dom";
 import Login from "./Login"
@@ -9,7 +11,11 @@ import CalenderBase from "./CalenderBase";
 const axios = require("axios");
 
 
+
+
 class Calender extends Component {
+
+   
   constructor() {
     super();
     this.state = {
@@ -17,20 +23,36 @@ class Calender extends Component {
       months: [],
       current: {},
       test: [],
+      user: "",
     };
   }
 
   componentWillMount(){
+    this.addEmail();
     document.body.style.backgroundColor = "grey";
     this.createCalender();
     this.state.current = this.state.months[new Date().getMonth()];
   }
 
+
   componentDidMount() {
     this.grabTasks();
   }
+
+  addEmail = () => {
+    var newState = this.state;
+    const url = window.location.pathname.split('/');
+    var email = url[url.length-1]
+    newState.user = email;
+    this.setState({newState});
+
+  }
   //Sets up local state calender based on the year and how the calender should be structured.
   createCalender = () => {
+
+
+   // const { emailName } = this.props.params
+    console.log("Props: " + window.location.pathname);
     var newState = this.state;
     var year = new Date().getFullYear();
     for(var i = 0; i < 12; i++){
@@ -50,7 +72,6 @@ class Calender extends Component {
           days.push("");
         }
       }
-      console.log(days);
       newState.months[i] = {
         id: i + 1,
         monthName: this.state.monthNames[i],
@@ -63,13 +84,21 @@ class Calender extends Component {
 
   //Grabs existing tasks from database and adds them to the local visual list of events while avoiding duplicates fropm showing.
   grabTasks = () => {
+
+    var data = {
+      email: this.state.user
+    }
     
-    fetch("https://calender-server.herokuapp.com/users")
+    fetch("https://calender-server.herokuapp.com/users/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    })
       .then((responce) => responce.json())
       .then((result) => {
         var newState = this.state;
         var idList = [];
-        console.log(result); //What i need to change to to get the right inormation;
+        console.log(result.recordset.length); //What i need to change to to get the right inormation;
         for(var a = 0; a < result.recordset.length; a++) {
           var date = this.separateDate(result.recordset[a].date);
           for (var i = 0; i < this.state.months.length; i++) {
@@ -152,15 +181,15 @@ class Calender extends Component {
 
   //Adds task to the database and then regrabs the task
   addTask = (taskInfo) => {
-    console.log("changes");
 
     var data = {
       name: taskInfo.taskName.replace("'", "''"),
+      email: this.state.user,
       startTime: this.checkTime(taskInfo.startTime),
       endTime: this.checkTime(taskInfo.endTime),
       date: this.combineDate(taskInfo.day, taskInfo.month),
       priority: taskInfo.priority,
-      description: taskInfo.description,
+      description: taskInfo.description.replace("'", "''"),
     };
     console.log(data);
     if(data.startTime === "NULL"){
@@ -326,13 +355,16 @@ class Calender extends Component {
     return months;
   };
 
+
+
+
   render() {
+
     return (
          <div className="App">
-          
-          <Header />
           <CalenderBase
             id="calender"
+            user={this.state.user}
             month={this.state.current}
             months={this.getMonths}
             changeMonth={this.changeMonth}

@@ -6,14 +6,16 @@ import Header from "./Components/Layout/Header.js"
 
 export default function Routes() {
   return (
-    
-    <Switch>
-      <Route exact path="/">
-        <Calender />
+    <div className="App">
+      <Header />
+      <Switch>
+        <Route exact path="/calender/:emailName">
+          <Calender />
+        </Route>
+        <Route exact path="/login">
+          <Login />
       </Route>
-      <Route exact path="/login">
-        <Login />
-    </Route>
-    </Switch>
+      </Switch>
+    </div>
   );
 }

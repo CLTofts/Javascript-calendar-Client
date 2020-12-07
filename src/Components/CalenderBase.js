@@ -212,7 +212,9 @@ export class CalenderBase extends Component {
         <div className="calender">
           <div className="CalenderHeader">
             <Link
-              to="/"
+              to={{
+                pathname: "/calender/" + this.props.user
+              }}
               className="HeaderItem"
               onClick={this.props.changeMonth.bind(
                 this,
@@ -234,7 +236,9 @@ export class CalenderBase extends Component {
             </div>
 
             <Link
-              to="/"
+              to={{
+                pathname: "/calender/" + this.props.user
+              }}
               className="HeaderItem"
               onClick={this.props.changeMonth.bind(
                 this,
