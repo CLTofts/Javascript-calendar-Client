@@ -52,7 +52,6 @@ class Calender extends Component {
 
 
    // const { emailName } = this.props.params
-    console.log("Props: " + window.location.pathname);
     var newState = this.state;
     var year = new Date().getFullYear();
     for(var i = 0; i < 12; i++){
@@ -225,7 +224,6 @@ class Calender extends Component {
         return response.json();
       })
       .then(function (data) {
-        console.log(data);
         if (data === "success") {
           console.log("Item has been added");
         }
@@ -234,7 +232,9 @@ class Calender extends Component {
         console.log(err);
       });
     }
-    
+    this.setTimeout(() => {
+      this.grabTasks();
+    }, 6000);
 
   };  
 
@@ -261,7 +261,6 @@ class Calender extends Component {
 
   //Returns month number from month name
   numberMonth = (month) => {
-    console.log(month);
     for (var j = 0; j <= this.state.months.length; j++) {
       if (this.state.months[j].monthName === month) {
         var temp = this.state.months[j].id.toString();
@@ -307,7 +306,6 @@ class Calender extends Component {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
       if (data === "success") {
         console.log("Item has been added");
       }
