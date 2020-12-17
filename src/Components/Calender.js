@@ -98,7 +98,6 @@ class Calender extends Component {
       .then((result) => {
         var newState = this.state;
         var idList = [];
-        console.log(result.recordset.length); //What i need to change to to get the right inormation;
         for(var a = 0; a < result.recordset.length; a++) {
           var date = this.separateDate(result.recordset[a].date);
           for (var i = 0; i < this.state.months.length; i++) {
@@ -183,7 +182,7 @@ class Calender extends Component {
   addTask = (taskInfo) => {
 
     var data = {
-      name: taskInfo.taskName.replace("'", "''"),
+      name: taskInfo.taskName.replace("'", "''"), // Allows for database to handle apostrophes
       email: this.state.user,
       startTime: this.checkTime(taskInfo.startTime),
       endTime: this.checkTime(taskInfo.endTime),
@@ -191,7 +190,6 @@ class Calender extends Component {
       priority: taskInfo.priority,
       description: taskInfo.description.replace("'", "''"),
     };
-    console.log(data);
     if(data.startTime === "NULL"){
       fetch("https://calender-server.herokuapp.com/users/addTaskWithoutTime", {
       method: "POST",
@@ -205,7 +203,6 @@ class Calender extends Component {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
       if (data === "success") {
         console.log("Item has been added");
       }
@@ -238,23 +235,8 @@ class Calender extends Component {
       });
     }
     
-      
 
-    this.grabTasks();
-
-    // var month = this.state.current.id-1;
-    // var newState = this.state;
-    //     newState.months[month].tasks.push({
-    //       id: uuidv4(),
-    //       day: parseInt(taskInfo.day),
-    //       name: taskInfo.taskName,
-    //       priority: taskInfo.priority,
-    //       description: taskInfo.description
-    //     });
-
-    //     this.setState({newState});
-    //     console.log("only Reaching back here");
-  };
+  };  
 
 
 
